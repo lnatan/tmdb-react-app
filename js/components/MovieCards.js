@@ -16,14 +16,15 @@ class MovieCards extends Component {
   }
 
   render() {
-    const movies = [];
+    const movies = [];    
 
     this.props.data.forEach(item => {
+      const poster = item.poster_path ? URL_IMG+IMG_SIZE_LARGE+item.poster_path : './images/no_poster.jpg';      
       movies.push(
         <Col md={4} key={item.id} className="d-flex">
           <Card border="light" key={item.id}>
             <Card.Link onClick={() => this.handleClick(item.id)}>
-              <Card.Img variant="top" className="card-img-height" src={URL_IMG+IMG_SIZE_LARGE+item.poster_path} />
+              <Card.Img variant="top" className="card-img-height" src={poster} />
               <Card.Body>
                 <Card.Title>{item.title}</Card.Title>
                 <Card.Text>

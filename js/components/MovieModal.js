@@ -14,11 +14,12 @@ class MovieModal extends Component {
 
       const movieInfo = this.props.data.find(({id}) => id === this.props.id);
       const { title, popularity, poster_path, release_date, overview } = movieInfo;
+      const poster = poster_path ? URL_IMG+IMG_SIZE_LARGE+poster_path : './images/no_poster.jpg';   
 
       movie = 
         <Row>
           <Col className="text-center" md={6}>
-            <Image src={URL_IMG+IMG_SIZE_LARGE+poster_path} />
+            <Image src={poster} />
           </Col>
           <Col md={6}>
             <h2>{title}</h2>

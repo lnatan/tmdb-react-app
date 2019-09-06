@@ -55,19 +55,31 @@ export default class App extends Component {
     });
   }
 
+  handleErrors(data) {
+    if (!data.results.length) {
+      throw Error(`Results is empty`);
+    }
+    return data;
+  }
+
  
   componentDidMount() {   
     const url = constants.UPCOMING + dateString;
+
     fetch(url)
-    .then(res => res.json())
-    .then(json => json.results)
-    .then(data => {
-      this.setState({
-        data: data,
-        sorted: data,
-        isLoaded: true        
+      .then(res => res.json())
+      .then(json => this.handleErrors(json))
+      .then(json => json.results)
+      .then(data => {
+        this.setState({
+          data: data,
+          sorted: data,
+          isLoaded: true        
+        })
       })
-    }); 
+      .catch(error => {
+        console.error(error);
+      });
   }
 
   render() {

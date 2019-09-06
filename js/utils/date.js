@@ -1,9 +1,18 @@
 const currentDate = new Date();
-const date = currentDate.getDate();
-const month = currentDate.getMonth(); // Be careful! January is 0 not 1
-const year = currentDate.getFullYear();
 
-const dateString = year + "-" + (month + 1) + "-" + date;
-const dateToTimestamp = date => new Date(date).getTime();
+let day = currentDate.getDate();
+let month = currentDate.getMonth() + 1; // Cause January is 0 not 1
+let year = currentDate.getFullYear();
 
-export { dateString, dateToTimestamp };
+if (month < 10) {
+  month = '0' + month;
+}
+
+if (day < 10) {
+  day = '0' + day;
+}
+
+const dateString = year + "-" + month + "-" + day;
+// const dateToTimestamp = date => new Date(date).getTime();
+
+export { dateString };
